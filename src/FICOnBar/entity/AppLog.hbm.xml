@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-ene-2016 0:23:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="FICOnBar.entity.AppLog" table="app_log" catalog="ficonbardb" optimistic-lock="version">
+        <id name="logId" type="java.lang.Integer">
+            <column name="log_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="appUser" class="FICOnBar.entity.AppUser" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="200" not-null="true" />
+        </property>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

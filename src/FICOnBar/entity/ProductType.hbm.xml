@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-ene-2016 0:23:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="FICOnBar.entity.ProductType" table="product_type" catalog="ficonbardb" optimistic-lock="version">
+        <id name="productTypeId" type="java.lang.Integer">
+            <column name="product_Type_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <set name="productsForComplementOf" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="complementOf" />
+            </key>
+            <one-to-many class="FICOnBar.entity.Product" />
+        </set>
+        <set name="productsForProductType" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_Type" not-null="true" />
+            </key>
+            <one-to-many class="FICOnBar.entity.Product" />
+        </set>
+    </class>
+</hibernate-mapping>

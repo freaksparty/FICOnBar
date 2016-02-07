@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-ene-2016 0:23:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="FICOnBar.entity.Sale" table="sale" catalog="ficonbardb" optimistic-lock="version">
+        <composite-id name="id" class="FICOnBar.entity.SaleId">
+            <key-property name="product" type="int">
+                <column name="product" />
+            </key-property>
+            <key-property name="client" type="int">
+                <column name="client" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="client" class="FICOnBar.entity.Client" update="false" insert="false" fetch="select">
+            <column name="client" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="FICOnBar.entity.Product" update="false" insert="false" fetch="select">
+            <column name="product" not-null="true" />
+        </many-to-one>
+        <property name="amount" type="int">
+            <column name="amount" not-null="true" />
+        </property>
+        <property name="total" type="float">
+            <column name="total" precision="5" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

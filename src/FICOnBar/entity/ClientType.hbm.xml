@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-ene-2016 0:23:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="FICOnBar.entity.ClientType" table="client_type" catalog="ficonbardb" optimistic-lock="version">
+        <id name="clientTypeId" type="java.lang.Integer">
+            <column name="client_Type_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" not-null="true" />
+        </property>
+        <set name="clients" table="client" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="client_Type" not-null="true" />
+            </key>
+            <one-to-many class="FICOnBar.entity.Client" />
+        </set>
+        <set name="prices" table="price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="client_Type" not-null="true" />
+            </key>
+            <one-to-many class="FICOnBar.entity.Price" />
+        </set>
+    </class>
+</hibernate-mapping>
